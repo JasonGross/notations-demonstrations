@@ -16,6 +16,16 @@ Inductive expr {var:type -> Type} : type -> Type :=
 | AddWithGetCarry (x y c : expr Z) : expr (prod Z Z)
 | CastToSize (lower upper : BinInt.Z) (v : expr Z) : expr Z.
 
+Delimit Scope etype_scope with etype.
+Delimit Scope expr_scope with expr.
+Bind Scope etype_scope with type.
+Bind Scope expr_scope with expr.
+Infix "*" := prod : etype_scope.
+Infix "*" := Mul : expr_scope.
+Infix "->" := arrow : etype_scope.
+Infix "-" := Sub : expr_scope.
+Infix "+" := Add : expr_scope.
+
 (* Syntax of notations (e.g., \texttt{Infix "+" := add.}; \texttt{Notation "a + b" := (add a b).}) *)
 (* Notation bodies must be parenthesized *)
 (* How to use levels and associativity, how to pick levels, how to discover levels of existing notations (\texttt{Print Grammar constr}) *)
